@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"api_version": "1.0.0",
 	"keywords": [
-		"Protocol"
+		"Protocol",
+		"Matrix"
 		],
 	"manufacturer": "Extron",
 	"product": "DXP Matrix",
