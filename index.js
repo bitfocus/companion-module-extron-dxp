@@ -214,7 +214,7 @@ instance.prototype.action = function(action) {
 			break;
 
 		case 'inputToAll':
-			cmd = opt.input +'*!';
+			cmd = opt.input +'*'+ opt.type;
 			break;
 
 	}
