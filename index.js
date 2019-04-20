@@ -165,10 +165,12 @@ instance.prototype.actions = function(system) {
 			options: [{
 					type: 'textinput',
 					label: 'input',
+					id: 'input',
 					regex: self.REGEX_NUMBER
 			}, {
 				type: 'textinput',
 				label: 'output',
+				id: 'output',
 				regex: self.REGEX_NUMBER
 			}, {
 				type: 'dropdown',
@@ -183,6 +185,7 @@ instance.prototype.actions = function(system) {
 			options: [{
 					type: 'textinput',
 					label: 'input',
+					id: 'input',
 					regex: self.REGEX_NUMBER
 			}, {
 				type: 'dropdown',
@@ -207,7 +210,7 @@ instance.prototype.action = function(action) {
 
 	switch (id) {
 		case 'route':
-			cmd = opt.input +'*'+ opt.output +'!';
+			cmd = opt.input +'*'+ opt.output + opt.type;
 			break;
 
 		case 'inputToAll':
