@@ -40,7 +40,7 @@ instance.prototype.incomingData = function(data) {
 	}
 
 
-	else if (self.login === false && data.match("ShellApp waiting for input")) {
+	else if (self.login === false && data.match("Extron Electronics DXP")) {
 		self.login = true;
 		self.status(self.STATUS_OK);
 		debug("logged in");
