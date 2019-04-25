@@ -205,15 +205,6 @@ instance.prototype.actions = function(system) {
 					id: 'preset',
 					regex: self.REGEX_NUMBER
 			}]
-		},
-		'command': {
-			label: 'Run command',
-			options: [{
-					type: 'textinput',
-					label: 'command',
-					id: 'command',
-					default: ''
-			}]
 		}
 	};
 
@@ -240,11 +231,11 @@ instance.prototype.action = function(action) {
 		case 'recall':
 			cmd = opt.preset +'.';
 			break;
-
+/***** Policy not to use custom commands as there are no restrictions
 		case 'command':
 			cmd = opt.command;
 			break;
-
+*/
 	}
 
 	if (cmd !== undefined) {
