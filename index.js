@@ -29,9 +29,11 @@ instance.prototype.incomingData = function(data) {
 	var self = this;
 	debug(data);
 
-	if (self.login === false && data.match("DXP login:")) {
+	// Match part of the copyright response from unit when a connection is made.
+	// Send Info request which should reply with Matrix setup, eg: "V8X4 A8X4"
+	if (self.login === false && data.match("Extron Electronics DXP")) {
 		self.status(self.STATUS_WARNING,'Logging in');
-		self.socket.write("user"+ "\n");
+		self.socket.write("I"+ "\n");
 	}
 
 	if (self.login === false && data.match("Password:")) {
@@ -39,14 +41,14 @@ instance.prototype.incomingData = function(data) {
 		self.socket.write(""+ "\n");
 	}
 
-
-	else if (self.login === false && data.match("Extron Electronics DXP")) {
+	// Match first letter of expected response from unit.
+	else if (self.login === false && data.match("V")) {
 		self.login = true;
 		self.status(self.STATUS_OK);
 		debug("logged in");
 	}
 	else if (self.login === false && data.match('login incorrect')) {
-		self.log('error', "incorrect username/password (expected to be 'user' and no password)");
+		self.log('error', "incorrect username/password (expected no password)");
 		self.status(self.STATUS_ERROR, 'Incorrect user/pass');
 	}
 	else {
@@ -194,6 +196,24 @@ instance.prototype.actions = function(system) {
 				choices: self.CHOICES_TYPE,
 				default: '!'
 			}]
+		},
+		'recall': {
+			label: 'Recall preset',
+			options: [{
+					type: 'textinput',
+					label: 'preset',
+					id: 'preset',
+					regex: self.REGEX_NUMBER
+			}]
+		},
+		'command': {
+			label: 'Run command',
+			options: [{
+					type: 'textinput',
+					label: 'command',
+					id: 'command',
+					default: ''
+			}]
 		}
 	};
 
@@ -215,6 +235,14 @@ instance.prototype.action = function(action) {
 
 		case 'inputToAll':
 			cmd = opt.input +'*'+ opt.type;
+			break;
+
+		case 'recall':
+			cmd = opt.preset +'.';
+			break;
+
+		case 'command':
+			cmd = opt.command;
 			break;
 
 	}
