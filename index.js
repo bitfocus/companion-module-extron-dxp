@@ -217,7 +217,6 @@ instance.prototype.action = function(action) {
 	var id = action.action;
 	var opt = action.options;
 	var cmd;
-	console.log("Sending some action: ", id);
 
 	switch (id) {
 		case 'route':
@@ -231,11 +230,7 @@ instance.prototype.action = function(action) {
 		case 'recall':
 			cmd = opt.preset +'.';
 			break;
-/***** Policy not to use custom commands as there are no restrictions
-		case 'command':
-			cmd = opt.command;
-			break;
-*/
+
 	}
 
 	if (cmd !== undefined) {
