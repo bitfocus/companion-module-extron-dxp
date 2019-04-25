@@ -142,7 +142,7 @@ instance.prototype.config_fields = function () {
 			id: 'host',
 			label: 'DXP IP address',
 			width: 12,
-			default: '192.168.0.1',
+			default: '192.168.254.254',
 			regex: self.REGEX_IP
 		}
 	]
