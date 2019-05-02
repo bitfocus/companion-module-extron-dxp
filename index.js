@@ -142,7 +142,7 @@ instance.prototype.config_fields = function () {
 			id: 'host',
 			label: 'DXP IP address',
 			width: 12,
-			default: '192.168.0.1',
+			default: '192.168.254.254',
 			regex: self.REGEX_IP
 		}
 	]
@@ -205,15 +205,6 @@ instance.prototype.actions = function(system) {
 					id: 'preset',
 					regex: self.REGEX_NUMBER
 			}]
-		},
-		'command': {
-			label: 'Run command',
-			options: [{
-					type: 'textinput',
-					label: 'command',
-					id: 'command',
-					default: ''
-			}]
 		}
 	};
 
@@ -226,7 +217,6 @@ instance.prototype.action = function(action) {
 	var id = action.action;
 	var opt = action.options;
 	var cmd;
-	console.log("Sending some action: ", id);
 
 	switch (id) {
 		case 'route':
@@ -239,10 +229,6 @@ instance.prototype.action = function(action) {
 
 		case 'recall':
 			cmd = opt.preset +'.';
-			break;
-
-		case 'command':
-			cmd = opt.command;
 			break;
 
 	}
