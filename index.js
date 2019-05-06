@@ -205,6 +205,15 @@ instance.prototype.actions = function(system) {
 					id: 'preset',
 					regex: self.REGEX_NUMBER
 			}]
+		},
+		'saveGlobalP': {
+			label: 'Save preset',
+			options: [{
+					type: 'textinput',
+					label: 'preset',
+					id: 'preset',
+					regex: self.REGEX_NUMBER
+			}]
 		}
 	};
 
@@ -229,6 +238,10 @@ instance.prototype.action = function(action) {
 
 		case 'recall':
 			cmd = opt.preset +'.';
+			break;
+
+		case 'saveGlobalP':
+			cmd = opt.preset +',';
 			break;
 
 	}
