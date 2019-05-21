@@ -51,6 +51,23 @@ instance.prototype.incomingData = function(data) {
 		self.log('error', "incorrect username/password (expected no password)");
 		self.status(self.STATUS_ERROR, 'Incorrect user/pass');
 	}
+	// Heatbeat to keep connection alive
+	if (self.login === true && self.socket.connected) {
+		clearInterval(self.heartbeat_interval);
+		var beat_period = 180; // Seconds
+		self.heartbeat_interval = setInterval(heartbeat, beat_period * 1000);
+		function heartbeat() {
+			self.login = false;
+			self.status(self.STATUS_WARNING,'Checking Connection');
+			self.socket.write("N"+ "\n"); // should respond with Switcher part number eg: "60-882-01" = DXP 88 HDMI
+			debug("Checking Connection");
+		}
+	}
+	else if (self.login === false && data.match("60")) {
+		self.login = true;
+		self.status(self.STATUS_OK);
+		debug("Heartbeat OK");
+	}
 	else {
 		debug("data nologin", data);
 	}
@@ -151,6 +168,7 @@ instance.prototype.config_fields = function () {
 // When module gets deleted
 instance.prototype.destroy = function() {
 	var self = this;
+	clearInterval (self.heartbeat_interval); //Stop Heartbeat
 
 	if (self.socket !== undefined) {
 		self.socket.destroy();
