@@ -8,7 +8,7 @@
 		],
 	"manufacturer": "Extron",
 	"product": "DXP Matrix",
-	"shortname": "DXP Matrix",
+	"shortname": "DXP",
 	"description": "DXP Matrix plugin for Companion",
 	"main": "index.js",
 	"scripts": {
