@@ -31,7 +31,7 @@ instance.prototype.incomingData = function(data) {
 
 	// Match part of the copyright response from unit when a connection is made.
 	// Send Info request which should reply with Matrix setup, eg: "V8X4 A8X4"
-	if (self.login === false && data.match("Extron Electronics DXP")) {
+	if (self.login === false && data.match("Extron Electronics")) {
 		self.status(self.STATUS_WARNING,'Logging in');
 		self.socket.write("I"+ "\n");
 	}
@@ -42,7 +42,7 @@ instance.prototype.incomingData = function(data) {
 	}
 
 	// Match first letter of expected response from unit.
-	else if (self.login === false && data.match("V")) {
+	else if (self.login === false && data.match(/V|60/)) {
 		self.login = true;
 		self.status(self.STATUS_OK);
 		debug("logged in");
@@ -52,7 +52,7 @@ instance.prototype.incomingData = function(data) {
 		self.status(self.STATUS_ERROR, 'Incorrect user/pass');
 	}
 	// Heatbeat to keep connection alive
-	if (self.login === true && self.socket.connected) {
+	if (self.login === true) {
 		clearInterval(self.heartbeat_interval);
 		var beat_period = 180; // Seconds
 		self.heartbeat_interval = setInterval(heartbeat, beat_period * 1000);
@@ -62,11 +62,6 @@ instance.prototype.incomingData = function(data) {
 			self.socket.write("N"+ "\n"); // should respond with Switcher part number eg: "60-882-01" = DXP 88 HDMI
 			debug("Checking Connection");
 		}
-	}
-	else if (self.login === false && data.match("60")) {
-		self.login = true;
-		self.status(self.STATUS_OK);
-		debug("Heartbeat OK");
 	}
 	else {
 		debug("data nologin", data);
