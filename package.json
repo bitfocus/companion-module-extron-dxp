@@ -1,6 +1,6 @@
 {
 	"name": "extron-dxp",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"api_version": "1.0.0",
 	"keywords": [
 		"Protocol",
@@ -8,7 +8,7 @@
 		],
 	"manufacturer": "Extron",
 	"product": "DXP Matrix",
-	"shortname": "Extron Matrix",
+	"shortname": "DXP",
 	"description": "DXP Matrix plugin for Companion",
 	"main": "index.js",
 	"scripts": {
