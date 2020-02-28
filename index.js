@@ -67,7 +67,7 @@ instance.prototype.incomingData = function(data) {
 		self.status(self.STATUS_WARNING,'Checking Connection');
 		self.socket.write("N\n"); // should respond with Switcher part number eg: "60-882-01" = DXP 88 HDMI
 		debug("Checking Connection");
-		}
+	}
 	if (self.login === true) {
 		clearInterval(self.heartbeat_interval);
 		var beat_period = 60; // Seconds
