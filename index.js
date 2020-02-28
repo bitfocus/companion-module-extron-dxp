@@ -39,18 +39,18 @@ instance.prototype.incomingData = function(data) {
 	debug(data);
 
 	// Match part of the copyright response from unit when a connection is made.
-	if (self.login === false && data.match("Extron Electronics")) {
+	if (self.login === false && data.match(/Extron Electronics/)) {
 		self.status(self.STATUS_WARNING,'Logging in');
-		self.socket.write("I"+ "\n"); // Matrix information request
+		self.socket.write("I\n"); // Matrix information request
 	}
 
-	if (self.login === false && data.match("Password:")) {
+	if (self.login === false && data.match(/Password:/)) {
 		self.status(self.STATUS_WARNING,'Logging in');
 		self.socket.write("\r" +self.config.password+ "\r"); // Enter Password Set
 	}
 
 	// Match login sucess response from unit.
-	else if (self.login === false && data.match("Login")) {
+	else if (self.login === false && data.match(/Login/)) {
 		self.login = true;
 		self.status(self.STATUS_OK);
 		debug("logged in");
@@ -65,7 +65,7 @@ instance.prototype.incomingData = function(data) {
 	function heartbeat() {
 		self.login = false;
 		self.status(self.STATUS_WARNING,'Checking Connection');
-		self.socket.write("N"+ "\n"); // should respond with Switcher part number eg: "60-882-01" = DXP 88 HDMI
+		self.socket.write("N\n"); // should respond with Switcher part number eg: "60-882-01" = DXP 88 HDMI
 		debug("Checking Connection");
 		}
 	if (self.login === true) {
