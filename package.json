@@ -7,9 +7,12 @@
 		"Matrix"
 		],
 	"manufacturer": "Extron",
-	"product": "DXP Matrix",
-	"shortname": "DXP",
-	"description": "DXP Matrix plugin for Companion",
+	"product": [
+		"DXP Series Matrix",
+		"FOX Series Matrix"
+		],
+	"shortname": "DXP-FOX",
+	"description": "Extron Matrix plugin for Companion",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
