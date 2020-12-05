@@ -116,12 +116,12 @@ instance.prototype.init_tcp = function() {
 		self.socket.on("iac", function(type, info) {
 			// tell remote we WONT do anything we're asked to DO
 			if (type == 'DO') {
-				self.socket.write(new Buffer([ 255, 252, info ]));
+				self.socket.write(Buffer.from([ 255, 252, info ]));
 			}
 
 			// tell the remote DONT do whatever they WILL offer
 			if (type == 'WILL') {
-				self.socket.write(new Buffer([ 255, 254, info ]));
+				self.socket.write(Buffer.from([ 255, 254, info ]));
 			}
 		});
 	}
