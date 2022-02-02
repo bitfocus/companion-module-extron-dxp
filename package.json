@@ -5,7 +5,7 @@
 	"keywords": [
 		"Protocol",
 		"Matrix"
-		],
+	],
 	"manufacturer": "Extron",
 	"product": "DXP Matrix",
 	"shortname": "DXP",
@@ -15,5 +15,13 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Jeffrey Davidsz <jeffrey.davidsz@vicreo.eu>",
-	"license": "MIT"
+	"license": "MIT",
+	"homepage": "https://github.com/bitfocus/companion-module-extron-dxp#readme",
+	"bugs": {
+		"url": "https://github.com/bitfocus/companion-module-extron-dxp/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-extron-dxp.git"
+	}
 }
